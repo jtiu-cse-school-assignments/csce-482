@@ -1,0 +1,52 @@
+<div *ngIf="patientNotExist">
+  <h1>Sorry, the specified patient does not exist.</h1>
+</div>
+
+<div class="admissions" *ngIf="!patientNotExist">
+  <h1>ADMISSIONS:</h1>
+
+  <div *ngFor="let admission of admissions" class="admission-info">
+
+    <div *ngIf="buttonClickable; else notClickable">
+
+      <button *ngIf="!admission.viewing; else viewing" (click)="storeSelectedAdmission(admission.admissionID)">
+          <h3 id="title"><span>Admission ID: </span>{{admission.admissionID}}</h3>
+          <ul class="admission-details">
+            <li><span>Admission Type: </span>{{admission.admissionType}}</li>
+            <li><span>Diagnosis: </span>{{admission.diagnosis}}</li>
+            <li><span>Date Admitted: {{admission.admitted}}</span></li>
+            <li><span>Date Discharged: {{admission.discharged}}</span></li>
+          </ul>
+
+        </button>
+
+        <ng-template #viewing>
+          <button id="viewed" (click)="storeSelectedAdmission(admission.admissionID)">
+            <h3 id="title"><span>Admission ID: </span>{{admission.admissionID}}</h3>
+            <li><span>Admission Type: </span>{{admission.admissionType}}</li>
+            <li><span>Diagnosis: </span>{{admission.diagnosis}}</li>
+            <li><span>Date Admitted: {{admission.admitted}}</span></li>
+            <li><span>Date Discharged: {{admission.discharged}}</span></li>
+          </button>
+        </ng-template>
+    </div>
+
+    <ng-template #notClickable>
+      <div *ngIf="!admission.viewing; else viewing2">
+          <h3 id="title"><span>Admission ID: </span>{{admission.admissionID}}</h3>
+          <li><span>Admission Type: </span>{{admission.admissionType}}</li>
+          <li><span>Diagnosis: </span>{{admission.diagnosis}}</li>
+          <li><span>Date Admitted: {{admission.admitted}}</span></li>
+          <li><span>Date Discharged: {{admission.discharged}}</span></li>
+      </div>
+
+      <ng-template #viewing2>
+          <h3 id="title"><span>Admission ID: </span>{{admission.admissionID}}</h3>
+          <li><span>Admission Type: </span>{{admission.admissionType}}</li>
+          <li><span>Diagnosis: </span>{{admission.diagnosis}}</li>
+          <li><span>Date Admitted: {{admission.admitted}}</span></li>
+          <li><span>Date Discharged: {{admission.discharged}}</span></li>
+      </ng-template>
+    </ng-template>
+  </div>
+</div>

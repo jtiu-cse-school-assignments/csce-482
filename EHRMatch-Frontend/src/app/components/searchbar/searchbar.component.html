@@ -1,0 +1,20 @@
+<div class="search">
+  <h1>Search by Patient ID</h1>
+  
+  <form novalidate #f_newPatientSearch="ngForm" (ngSubmit)="searchPatient()">
+    <input
+      type="text"
+      name="patientID"
+      #patientID="ngModel"
+      [(ngModel)]="patientModel.patientID"
+      required
+    >
+    <button class="btn" [disabled]="f_newPatientSearch.invalid">
+      SEARCH
+    </button>
+  </form>
+
+  <div class="admissionsList">
+    <app-admission-profile [patientID]="patientIDToChild"></app-admission-profile>
+  </div>
+</div>

@@ -1,0 +1,60 @@
+
+<!-- <h1>Patient Comparison</h1>
+<div class="patient-comparison">
+  <app-patient-profile id="left"></app-patient-profile>
+
+  <div class="patient-profile-card">
+    <h2 id="patient-profile-title">{{comparedPatient.subjectID}}'s Patient Profile</h2>
+    <ul>
+      <div class="patient-id">
+        <li><span>Subject ID: </span>{{comparedPatient.subjectID}}</li>
+        <li><span>Number of Admissions: </span>{{comparedPatient.numAdmissions}}</li>
+      </div>
+
+      <div class="demographic-info">
+        <li><h3 id="title">Demographic Information</h3>
+          <ul>
+            <li><span>Age: </span>{{comparedPatient.age}}</li>
+            <li><span>Ethnicity: </span>{{comparedPatient.ethnicity}}</li>
+            <li><span>Gender: </span>{{comparedPatient.gender}}</li>
+          </ul>
+        </li>
+      </div>
+
+      <div class="admission-info">
+        <li><h3 id="title"><span>Admission ID: </span>{{comparedPatient.admissionID}}</h3></li>
+        <li><span>Admission Type: </span>{{comparedPatient.admissionType}}</li>
+        <li><span>Diagnosis: </span>{{comparedPatient.diagnosis}}</li>
+        <li><span>Expired: </span>{{comparedPatient.expired}}</li>
+        <li><span>Length of Stay: </span>{{comparedPatient.lengthStay}}</li>
+        <li><span>Number of ICU Stays: </span>{{comparedPatient.numICUStays}}</li>
+      </div>
+    </ul>
+  </div>
+</div> -->
+
+<!-- <div class="patient-comparison">
+  <ul *ngIf="rankArray; else noRank">
+    <button *ngFor="let patient of rankArray" (click)="compare()">
+      {{patient}}
+    </button>
+  </ul>
+  <ng-template #noRank>
+    <div>
+      <img src="../../../assets/loading.gif">
+    </div>
+  </ng-template>
+</div> -->
+
+<app-similar-patients></app-similar-patients>
+<div *ngIf="showGraphs">
+
+  <app-patient-profile [passedPatientID]="initialPatientID" [passedAdmissionID]="initialPatientAdmissionID"></app-patient-profile>
+  <app-patient-profile [passedPatientID]="similarPatientID" [passedAdmissionID]="similarPatientAdmissionID"></app-patient-profile>
+
+  <app-lab-events-graph [patientID]="initialPatientID" [admissionID]="initialPatientAdmissionID"></app-lab-events-graph>
+  <app-lab-events-graph *ngIf="similarPatientID" [patientID]="similarPatientID" [admissionID]="similarPatientAdmissionID"></app-lab-events-graph>
+
+  <app-chart-events-graph [patientID]="initialPatientID" [admissionID]="initialPatientAdmissionID"></app-chart-events-graph>
+  <app-chart-events-graph *ngIf="similarPatientID" [patientID]="similarPatientID" [admissionID]="similarPatientAdmissionID"></app-chart-events-graph>
+</div>

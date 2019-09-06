@@ -1,0 +1,56 @@
+/* FOOTER */
+footer {
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+  background-color: #003333;
+  color: rgb(85, 186, 166);
+}
+
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+}
+
+footer a {
+  color: #d1e0e0;
+}
+
+footer a:hover {
+  color: #e6b800;
+}
+
+footer h5 {
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  padding: 0;
+  margin: 10px 0;
+}
+
+footer p {
+  font-size: .75em;
+  color: #d1e0e0;
+}
+
+.footer-top {
+  display: flex;
+}
+
+.footer-col {
+  /* padding-right: 50px; */
+}
+
+.col1 {
+  flex: 1;
+}
+
+.col2 {
+  flex: 1;
+}
+
+.col3 {
+  flex: 2;
+}

@@ -1,0 +1,26 @@
+
+
+<div class="similar-patients">
+  <div class="similar-patients">
+
+    <ul *ngIf="similarPatientsArray; else loading" class="patients">
+      <h1>SIMILAR PATIENTS TO PATIENT {{initialPatientID}}</h1>
+      <li *ngFor="let patient of similarPatientsArray">
+        <button *ngIf="!patient.viewing; else viewing" (click)="setSimilarPatient(patient)">
+          {{patient.similarPatientID}}-{{patient.similarPatientAdmissionID}}
+        </button>
+        <ng-template #viewing>
+          <button id="viewing" (click)="setSimilarPatient(patient)">
+              {{patient.similarPatientID}}-{{patient.similarPatientAdmissionID}}
+          </button>
+        </ng-template>
+      </li>
+    </ul>
+    <ng-template #loading>
+      This component is trying to run the clustering algorithm. Please wait...
+      <div>
+          <img src="../../../assets/loading.gif">
+      </div>
+    </ng-template>
+  </div>
+</div>

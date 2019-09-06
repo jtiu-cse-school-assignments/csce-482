@@ -1,0 +1,58 @@
+<div class="patient-profile-card">
+  <h2 id="patient-profile-title">Patient {{patient.subjectID}}'s Profile</h2>
+  <ul>
+    <div class="patient-id">
+      <li><span>Subject ID: </span>{{patient.subjectID}}</li>
+      <li><span>Number of Admissions: </span>{{patient.numAdmissions}}</li>
+    </div>
+
+    <!-- <app-admission-profile [patientID]="patient.subjectID"></app-admission-profile> -->
+
+    <div id="card-bot">
+      <div class="demographic-info">
+        <li>
+          <h3 id="title">Demographic Information</h3>
+          <ul *ngIf="patient.admission">
+            <li><span>Age: </span>{{patient.age}}</li>
+            <li><span>Ethnicity: </span>{{patient.ethnicity}}</li>
+            <li><span>Gender: </span>{{patient.gender}}</li>
+          </ul>
+          <h3 id="title">Admission Information</h3>
+          <ul *ngIf="patient.admission">
+            <li><span>Admitted: </span>{{patient.admission.admitted}}</li>
+            <li><span>Discharged: </span>{{patient.admission.discharged}}</li>
+            <li><span>Died? </span>{{patient.admission.expired}}</li>
+            <li><span>Length of stay: </span>{{patient.admission.stay_length}} days</li>
+            <li><span>ICU stay count: </span>{{patient.admission.icustay_count}}</li>
+          </ul>
+          <h3 id="title">Procedures</h3>
+          <ul *ngIf="patient.procedures">
+            <li *ngFor="let procedure of patient['procedures']">
+              {{procedure.long}}
+            </li>
+          </ul>
+          <h3>Last Note:</h3>
+          <!-- <form>
+            <select [formControl]="notesForm">
+                <option selected>{{false}}</option>
+                <option>{{true}}</option>
+            </select>
+
+            <button (click)="showNotes()">submit</button>
+          </form> -->
+          <div *ngIf="okayToShowNotes">
+            <p id="patientNote" *ngIf="last_note != null; else noNotes">{{last_note}}</p>
+            <ng-template #noNotes>
+              <p>No notes available</p>
+            </ng-template>
+          </div>
+        </li>
+      </div>
+    </div>
+  </ul>
+</div>
+
+<!-- <div class="patientGraphs" *ngIf="showGraphs">
+  <app-lab-events-graph [patientID]="patientID" [admissionID]="admissionID"></app-lab-events-graph>
+  <app-chart-events-graph [patientID]="patientID" [admissionID]="admissionID"></app-chart-events-graph>
+</div> -->

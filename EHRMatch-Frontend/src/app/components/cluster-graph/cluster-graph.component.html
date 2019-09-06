@@ -1,0 +1,102 @@
+<!-- <ng-template #noGraph> 
+    <div>
+        Clustering calculation time depends on the amount of patients being calculated. This may take up to 30 seconds.
+        <img src="../../../assets/loading.gif">
+    </div>
+</ng-template> -->
+
+<h1>Patient {{patientID}} Falls Under Cluster {{patientClusterNumber}}</h1>
+<plotly-plot *ngIf="graph" [data]="graph.data" [layout]="graph.layout"></plotly-plot>
+
+<!-- <form>
+    <label>Zoom Scale: </label>
+    <select [formControl]="zoomScale">
+        <option *ngFor='let i of ["min/max",20,15,10,5,4,3,2,1]'>{{i}}</option>
+    </select>
+
+    <div *ngIf="okayToShowCheckbox; else cantShowCheckBox">
+        <label>Clusters: </label>
+        <input *ngFor="let cluster of listOfClusters"
+            type="checkbox"
+            (change)="checkSelectedCluster(cluster)"
+            checked
+        />
+    </div>
+    <ng-template #cantShowCheckBox>
+        <div>
+            <label>Clusters: select "hidden" under "Show Cluster Statistics"</label>
+        </div>
+    </ng-template>
+
+    <button (click)="generateGraph()">submit</button>
+</form>
+<div>
+    <br>
+    <h1>SUMMARY TABLE</h1>
+    <form *ngIf="okayToShowClusterInfoForm">
+        <label>Show Cluster Statistics: </label>
+        <select [formControl]="selectCluster">
+            <option selected>hidden</option>
+            <option *ngFor='let cluster of summaryTableArray; let i = index'>{{i}}</option>
+        </select>
+
+        <button (click)="showClusterWithInfo()">submit</button>
+    </form>
+
+    <table *ngIf="okayToShowClusterInfo">
+        <caption>Statistics</caption>
+        <tr>
+            <th></th>
+            <th *ngFor="let col of columnNames">{{col}}</th> 
+        </tr>
+        <tr *ngFor="let row of rowNames">
+            <td>{{row}}</td>
+            <td *ngFor="let col of columnNames">{{ summaryTableArray[finalSelectedClusterValue][row][col] }}</td>
+        </tr>
+    </table>
+    <br>
+    <table *ngIf="okayToShowClusterInfo" style="width:100%">
+        <caption>Percentages in the scope of the cluster alone</caption>
+        <tr>
+            <th>Percent Dead</th>
+            <th>Percent Alive</th>
+            <th>Percent Readmitted</th>
+        </tr>
+        <tr>
+           <td style="text-align:center">{{outcomePercentagesClusterLevelArray[finalSelectedClusterValue]['numDead']}}/{{outcomePercentagesClusterLevelArray[finalSelectedClusterValue]['numPatInClus']}} = {{outcomePercentagesClusterLevelArray[finalSelectedClusterValue]['dead']}}%</td> 
+           <td style="text-align:center">{{outcomePercentagesClusterLevelArray[finalSelectedClusterValue]['numAlive']}}/{{outcomePercentagesClusterLevelArray[finalSelectedClusterValue]['numPatInClus']}} = {{outcomePercentagesClusterLevelArray[finalSelectedClusterValue]['alive']}}%</td> 
+           <td style="text-align:center">{{outcomePercentagesClusterLevelArray[finalSelectedClusterValue]['numReadmitted']}}/{{outcomePercentagesClusterLevelArray[finalSelectedClusterValue]['numPatInClus']}} = {{outcomePercentagesClusterLevelArray[finalSelectedClusterValue]['readmitted']}}%</td> 
+        </tr>
+    </table>
+    <br>
+    <table *ngIf="okayToShowClusterInfo" style="width:100%">
+        <caption>Percentages in the scope of all clusters</caption>
+        <tr>
+            <th>Percent Dead</th>
+            <th>Percent Alive</th>
+            <th>Percent Readmitted</th>
+        </tr>
+        <tr>
+            <td style="text-align:center">{{outcomePercentagesGlobalLevelArray[finalSelectedClusterValue]['numDead']}}/{{outcomePercentagesGlobalLevelArray[finalSelectedClusterValue]['numPatInGraph']}}  = {{outcomePercentagesGlobalLevelArray[finalSelectedClusterValue]['dead']}}%</td> 
+            <td style="text-align:center">{{outcomePercentagesGlobalLevelArray[finalSelectedClusterValue]['numAlive']}}/{{outcomePercentagesGlobalLevelArray[finalSelectedClusterValue]['numPatInGraph']}} = {{outcomePercentagesGlobalLevelArray[finalSelectedClusterValue]['alive']}}%</td> 
+            <td style="text-align:center">{{outcomePercentagesGlobalLevelArray[finalSelectedClusterValue]['numReadmitted']}}/{{outcomePercentagesGlobalLevelArray[finalSelectedClusterValue]['numPatInGraph']}} = {{outcomePercentagesGlobalLevelArray[finalSelectedClusterValue]['readmitted']}}%</td> 
+        </tr>
+    </table>
+    <br>
+    <table *ngIf="okayToShowClusterInfo" style="width:100%">
+        <caption>Percentages based on the outcome in the scope of all clusters</caption>
+        <tr>
+            <th>Percent Dead</th>
+            <th>Percent Alive</th>
+            <th>Percent Readmitted</th>
+        </tr>
+        <tr>
+            <td style="text-align:center">{{outcomePercentagesGlobalVariableArray[finalSelectedClusterValue]['numDead']}}/{{outcomePercentagesGlobalVariableArray[finalSelectedClusterValue]['totalDead']}}  = {{outcomePercentagesGlobalVariableArray[finalSelectedClusterValue]['dead']}}%</td> 
+            <td style="text-align:center">{{outcomePercentagesGlobalVariableArray[finalSelectedClusterValue]['numAlive']}}/{{outcomePercentagesGlobalVariableArray[finalSelectedClusterValue]['totalAlive']}} = {{outcomePercentagesGlobalVariableArray[finalSelectedClusterValue]['alive']}}%</td> 
+            <td style="text-align:center">{{outcomePercentagesGlobalVariableArray[finalSelectedClusterValue]['numReadmitted']}}/{{outcomePercentagesGlobalVariableArray[finalSelectedClusterValue]['totalReadmitted']}} = {{outcomePercentagesGlobalVariableArray[finalSelectedClusterValue]['readmitted']}}%</td> 
+        </tr>
+    </table>
+    <br>
+</div>
+
+<app-similar-patients [clusterResult]="responseFromBackend"></app-similar-patients> -->

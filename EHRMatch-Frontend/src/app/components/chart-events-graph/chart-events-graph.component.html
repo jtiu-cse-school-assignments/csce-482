@@ -1,0 +1,6 @@
+<plotly-plot *ngIf="graph; else noGraph" [data]="graph.data" [layout]="graph.layout"></plotly-plot>
+<ng-template #noGraph> 
+    <div>
+        <img src="../../../assets/loading.gif">
+    </div>
+</ng-template>

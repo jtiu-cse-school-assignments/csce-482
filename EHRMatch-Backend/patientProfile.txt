@@ -1,0 +1,66 @@
+									ALL DATA THAT GOES IN THE PATIENT PROFILE
+----------------------------------------------------------------------------------------------------------------
+
+demographics {
+	age (at admission, admittime-dob)
+	gender - patients table
+	ethnicity - admissions (per admission?)
+}
+
+length of stay - admissions, (admission (date), discharge (date), and (discharge - admission) (# of days))
+
+vitals {
+	temp - 677, 3655, 676, 223762, 678, 223761, 3652, 679, 3654
+	weight - 226512, 224639, 763, 581, 22653
+	blood pressure diastolic - 220051, 8368, 225310, 8555, 220180, 224643, 227242, 8441, 8502, 8440, 8503, 8504, 8507, 8506
+	blood pressure systolic - 220050, 51, 225309, 6701, 220179, 224167, 227243, 455, 3313, 3315, 442, 3317, 3323, 3321
+	respiratory rate - 618, 220210, 3603, 224689, 615, 224690, 619, 614, 224688, 651, 224422
+	heart rate - 211, 20045
+	oxygen saturation / spO2 / sqO2 - 220227, 220277, 646, 834
+} chartevents - separate, with warning tag, don't separate across events
+
+number of hospital stays? - subject_id from admissions
+expire flag - patients table
+readmission? yes/no? (more than one admission) - count from admissions
+in icu multiple times in stay? - icustays table, subj_id adm_id (number of stays)
+
+lab test results {
+	bicarbonate - 50882
+	calcium - 50808
+	chloride - 50902
+	creatinine - 50912
+	glucose - 50809, 50931, 51478
+	hematocrit - 51221, 51480
+	lactate - 50813
+	magnesium - 50960
+	phosphorus (phosphate) - 50970
+	potassium - 50833, 50971
+	sodium - 50983
+	white blood cell count
+} LabEvents table, FLAGS - abnormal for all (separate like vitals)
+
+Itemid queries:
+	--select count(hadm_id) from admissions where subject_id=124
+	--select count(row_id) from labevents where itemid in (50809, 50931, 51478) and cast(flag as char) is null
+	--select count(row_id) from labevents where itemid in (50809, 50931, 51478) and flag='abnormal'
+	--select * from labevents where itemid in (51221, 51480)
+	--select label,itemid from d_labitems where label='Calcium'
+
+every charttime for vitals, labevents. etc - in percent stay (charttime / (discharge - admission))
+services, services table, chain from first to last (first null)
+admission type - admissions table
+
+procedures -
+	--select * from procedures_icd where subject_id=200
+	--select * from admissions where subject_id=200
+	--select * from D_ICD_PROCEDURES where icd9_code='9907' -- <--- short and long title
+	--select * from services where subject_id=42
+	--select * from transfers where subject_id=200 -- <--- IGNORE
+
+	basically find all procedures, look up icd9 code, get short and long names. Need to find times?
+
+-------------------------------------------------------------------------------------
+Extra:
+
+input events - charttime, what given, how much earliest charttime starttime, latest charttime with stopped column in table is stoptime
+	stored in inputEvents_CV (drugs?) and inputEvents_MV (different?), also D_Items with linksto

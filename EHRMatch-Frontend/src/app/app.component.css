@@ -1,0 +1,22 @@
+/* MAIN CONTENT */
+.main-wrapper {
+  width: 100%;
+}
+
+.wrapper {
+  display: flex;
+  margin: 0 auto;
+  padding: 50px 150px;
+}
+
+#main-content {
+  display: flex;
+  flex-direction: column;
+  margin-right: 50px;
+  flex: 1;
+}
+
+aside {
+  flex: .5;
+  min-width: 300px;
+}
